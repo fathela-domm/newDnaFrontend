@@ -1,0 +1,20 @@
+.card-body-title {
+  font-weight: bold;
+}
+
+mat-button-toggle-group {
+  display: flex;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+mat-button-toggle:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+mat-button-toggle:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

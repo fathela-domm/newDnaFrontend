@@ -1,0 +1,24 @@
+<div class="logo ml-1">
+  <a routerLink="/home" class="d-flex justify-content-center">
+    <div class="logo-img">
+      <img style="border-radius: 10px" src="/assets/img/monstrance.jpg" />
+    </div>
+    <div class="simple-text" style="font-size: 17px; margin-left: -5px">
+      Devout Catholic
+    </div>
+  </a>
+</div>
+<div class="sidebar-wrapper" style="height: 100vh">
+  <ul class="nav">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a class="nav-link" [routerLink]="[menuItem.path]">
+        <i style="color: ivory" class="material-icons">{{ menuItem.icon }}</i>
+        <p style="color: ivory">{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>

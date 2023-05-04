@@ -1,0 +1,17 @@
+<mat-nav-list>
+  <ng-container *ngFor="let socialShareLink of this.socialShareLinks">
+    <a
+      [href]="socialShareLink.href"
+      mat-list-item
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span mat-line>
+        <mat-icon slot="start" class="mr-4">
+          {{ socialShareLink.icon }}
+        </mat-icon>
+        {{ socialShareLink.label }}
+      </span>
+    </a>
+  </ng-container>
+</mat-nav-list>

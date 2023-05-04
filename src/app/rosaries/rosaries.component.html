@@ -1,0 +1,49 @@
+<div class="main-content">
+  <div class="main-rosaries-content">
+    <!-- results area -->
+    <mat-tab-group
+      *ngIf="this.rosariesData && this.mysteries && this.sorrowsOfMary"
+    >
+      <ng-container *ngFor="let rosary of this.rosariesData">
+        <mat-tab style="color: ivory" label="{{ rosary.name }}">
+          <ng-container style="width: 100%" *ngIf="rosary.name == 'The Rosary'">
+            <the-rosary [mysteries]="mysteries" [rosary]="rosary"></the-rosary>
+          </ng-container>
+          <ng-container
+            style="width: 100%"
+            *ngIf="rosary.name == 'Divine Mercy Chaplet'"
+          >
+            <divine-mercy-rosary [rosary]="rosary"></divine-mercy-rosary>
+          </ng-container>
+          <ng-container
+            style="width: 100%"
+            *ngIf="rosary.name == '7 Sorrow Rosary'"
+          >
+            <seven-sorrow-rosary
+              [sorrowsOfMary]="sorrowsOfMary"
+              [rosary]="rosary"
+            ></seven-sorrow-rosary>
+          </ng-container>
+        </mat-tab>
+      </ng-container>
+    </mat-tab-group>
+
+    <!-- preloader -->
+    <preloaders [condition]="this.isLoadingRosariesData"></preloaders>
+
+    <!-- error area -->
+    <div *ngIf="this.error" class="col-sm-11 m-auto">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title" style="white-space: pre-wrap">:( Error</h4>
+          <p class="card-category">{{ this.error }}</p>
+        </div>
+        <div class="card-body col-sm-12 m-auto">
+          <button class="btn btn-primary" (click)="fetchRosariesData()">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

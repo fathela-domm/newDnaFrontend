@@ -1,0 +1,93 @@
+<ng-container *ngIf="this.newTestamentBible">
+  <form
+    style="padding-top: -40px"
+    [formGroup]="filterFormGroup"
+    class="col-sm-12 d-flex flex-row"
+  >
+    <mat-form-field
+      class="card col-sm-8 justify-content-between"
+      appearance="fill"
+    >
+      <mat-label>Filter by book</mat-label>
+      <mat-select
+        #bibleBookSelect
+        formControlName="filterBibleByBook"
+        name="bibleBookSelect"
+      >
+        <mat-option>
+          <ngx-mat-select-search
+            placeholderLabel="Search"
+            noEntriesFoundLabel=":( Not Found!"
+            [formControl]="this.filterBibleByBookSearchCtrl"
+          ></ngx-mat-select-search>
+        </mat-option>
+        <mat-option
+          *ngFor="let book of filteredBibleBooks | async"
+          [value]="book.book"
+        >
+          {{ book.book }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="card col-sm-4 ml-2" appearance="fill">
+      <mat-label>Filter by chapter</mat-label>
+      <mat-select
+        #bibleChapterSelect
+        formControlName="filterBibleByChapter"
+        name="bibleChapterSelect"
+      >
+        <mat-option>
+          <ngx-mat-select-search
+            placeholderLabel="Search"
+            noEntriesFoundLabel=":( Not Found!"
+            type="number"
+            [formControl]="this.filterBibleByChapterSearchCtrl"
+          ></ngx-mat-select-search>
+        </mat-option>
+        <mat-option
+          *ngFor="let chapter of filteredBibleChapters | async"
+          [value]="chapter.no"
+        >
+          Chapter {{ chapter.no }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <div
+    class="d-flex flex-row"
+    style="position: relative; margin-top: -50px"
+    *ngIf="this.chapterToRender"
+  >
+    <!-- old testament filters -->
+    <button
+      class="mat-icon-button"
+      mat-icon-button
+      [disabled]="moveToPreviousChapterDisabled"
+      (click)="moveToPreviousChapter()"
+    >
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h3 class="card-title">{{ this.chapterToRender.book }}</h3>
+        <span class="card-title">Chapter {{ this.chapterToRender.no }}</span>
+      </div>
+      <div class="card-body">
+        <ng-container *ngFor="let verse of this.chapterToRender.verses">
+          <span class="category"> {{ verse.no }}. {{ verse.verse }} </span>
+          <br />
+          <br />
+        </ng-container>
+      </div>
+    </div>
+    <button
+      [disabled]="moveToNextChapterDisabled"
+      class="mat-icon-button"
+      mat-icon-button
+      (click)="moveToNextChapter()"
+    >
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</ng-container>

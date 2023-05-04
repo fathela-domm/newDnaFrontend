@@ -1,0 +1,215 @@
+.search-icon {
+  cursor: pointer;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 7px;
+  margin-left: -5px;
+}
+
+a:hover {
+  text-decoration: 1px solid blueviolet;
+}
+
+.search-icon:hover {
+  color: blue;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  align-items: center;
+}
+.skeleton {
+  padding: 15px;
+  margin: auto;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2),
+    0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}
+.skeleton .square {
+  height: 80px;
+  border-radius: 5px;
+  background: rgba(130, 130, 130, 0.2);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(8%, rgba(130, 130, 130, 0.2)),
+    color-stop(18%, rgba(130, 130, 130, 0.3)),
+    color-stop(33%, rgba(130, 130, 130, 0.2))
+  );
+  background: linear-gradient(
+    to right,
+    rgba(130, 130, 130, 0.2) 8%,
+    rgba(130, 130, 130, 0.3) 18%,
+    rgba(130, 130, 130, 0.2) 33%
+  );
+  background-size: 800px 100px;
+  animation: wave-squares 2s infinite ease-out;
+}
+.skeleton .line {
+  height: 12px;
+  margin-bottom: 6px;
+  border-radius: 2px;
+  background: rgba(130, 130, 130, 0.2);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(8%, rgba(130, 130, 130, 0.2)),
+    color-stop(18%, rgba(130, 130, 130, 0.3)),
+    color-stop(33%, rgba(130, 130, 130, 0.2))
+  );
+  background: linear-gradient(
+    to right,
+    rgba(130, 130, 130, 0.2) 8%,
+    rgba(130, 130, 130, 0.3) 18%,
+    rgba(130, 130, 130, 0.2) 33%
+  );
+  background-size: 800px 100px;
+  animation: wave-lines 2s infinite ease-out;
+}
+.skeleton-right {
+  flex: 1;
+}
+.skeleton-left {
+  flex: 2;
+  padding-right: 15px;
+}
+.flex1 {
+  flex: 1;
+}
+.flex2 {
+  flex: 2;
+}
+.skeleton .line:last-child {
+  margin-bottom: 0;
+}
+.h8 {
+  height: 8px !important;
+}
+.h10 {
+  height: 10px !important;
+}
+.h12 {
+  height: 12px !important;
+}
+.h15 {
+  height: 15px !important;
+}
+.h17 {
+  height: 17px !important;
+}
+.h20 {
+  height: 20px !important;
+}
+.h25 {
+  height: 25px !important;
+}
+.w25 {
+  width: 25% !important;
+}
+.w40 {
+  width: 40% !important;
+}
+.w50 {
+  width: 50% !important;
+}
+.w75 {
+  width: 75% !important;
+}
+.m10 {
+  margin-bottom: 10px !important;
+}
+.circle {
+  border-radius: 50% !important;
+  height: 80px !important;
+  width: 80px;
+}
+@keyframes wave-lines {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+@keyframes wave-squares {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+mat-list-item {
+  height: max-content;
+  margin-bottom: 80px;
+}
+
+.mat-dialog-container {
+  overflow-x: hidden;
+}
+
+mat-card {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  mat-card-header {
+    align-items: left;
+    position: relative;
+    z-index: 9;
+    margin-left: -20px;
+    * {
+      border-radius: 40px;
+    }
+  }
+  mat-card-content {
+    @media screen and (max-width: 575px) {
+      margin-left: -100px;
+    }
+  }
+  .mat-card-right {
+    height: 100%;
+    width: 100%;
+    display: block;
+    max-width: 20px;
+    .mat-card-top-right {
+      @media screen and (max-width: 575px) {
+        margin-top: -23px;
+        margin-left: 15px;
+      }
+      right: 0;
+      top: 0;
+      position: relative;
+      z-index: 9;
+      margin-top: -23px;
+      margin-left: 30px;
+    }
+    .mat-card-bottom-right {
+      @media screen and (max-width: 575px) {
+        margin-bottom: -50px;
+        margin-left: 15px;
+      }
+      position: relative;
+      z-index: 9;
+      margin-bottom: -40px;
+      margin-left: 30px;
+    }
+  }
+}

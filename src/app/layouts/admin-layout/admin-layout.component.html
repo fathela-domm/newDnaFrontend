@@ -1,0 +1,109 @@
+<div class="wrapper">
+  <div
+    class="sidebar"
+    data-color="danger"
+    data-background-color="white"
+    data-image="./assets/img/sidebar-1.jpg"
+  >
+    <div class="sidebar-background">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="sidebar-background" style="background-size: 100% 100%">
+      <section style="min-height: 100vh">
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </div>
+
+  <div class="fixed-plugin">
+    <div
+      data-toggle="dropdown"
+      aria-expanded="false"
+      class="dropdown show-dropdown open"
+    >
+      <span class="drop-down-toggler">
+        <mat-icon class="drop-down-icon">settings</mat-icon>
+      </span>
+      <ul
+        class="dropdown-menu show"
+        x-placement="bottom-start"
+        style="
+          position: absolute;
+          top: 41px;
+          left: -225px;
+          zoom: 0.97;
+          will-change: top, left;
+        "
+      >
+        <li class="header-title">Theme Filters</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger active-color">
+            <div class="ml-auto mr-auto">
+              <span
+                class="badge filter badge-purple"
+                data-color="purple"
+              ></span>
+              <span class="badge filter badge-azure" data-color="azure"></span>
+              <span class="badge filter badge-green" data-color="green"></span>
+              <span
+                class="badge filter badge-orange"
+                data-color="orange"
+              ></span>
+              <span
+                class="badge filter badge-danger active"
+                data-color="danger"
+              ></span>
+            </div>
+            <div class="clearfix"></div>
+            <div class="ripple-container"></div
+          ></a>
+        </li>
+        <li class="header-title">Images</li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-1.jpg" alt="" />
+          </span>
+        </li>
+
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-2.jpg" alt="" />
+          </span>
+        </li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-3.jpg" alt="" />
+          </span>
+        </li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-4.jpg" alt="" />
+          </span>
+        </li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-5.jpg" alt="" />
+          </span>
+        </li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-6.jpg" alt="" />
+          </span>
+        </li>
+        <li>
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-7.jpg" alt="" />
+          </span>
+        </li>
+        <li class="active">
+          <span class="img-holder switch-trigger">
+            <img src="./assets/img/sidebar-8.jpg" alt="" />
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

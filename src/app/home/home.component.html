@@ -1,0 +1,136 @@
+<div class="main-content">
+  <mat-tab-group *ngIf="this.dailyReadings">
+    <ng-container
+      *ngFor="
+        let readingSets of this.dailyReadings;
+        let readingSetIndex = index
+      "
+    >
+      <mat-tab label="Readings Set {{ readingSetIndex + 1 }}">
+        <ng-container
+          *ngFor="let readingSet of readingSets; index as readingIndex"
+        >
+          <!-- mass id card starts here -->
+          <div *ngIf="readingSet.massId" class="m-auto">
+            <div class="card">
+              <div class="card-header card-header-warning">
+                <div class="d-flex flex-row justify-content-between">
+                  <h4 class="card-title text-left" *ngIf="readingSet.massId">
+                    {{ readingSet.massId?.trim() }}
+                  </h4>
+
+                  <!-- all readings menu -->
+                  <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button
+                      (click)="this.shareAllReadings(readingSetIndex)"
+                      mat-menu-item
+                    >
+                      <mat-icon>share</mat-icon>
+                      <span>Share All</span>
+                    </button>
+                    <button
+                      (click)="this.copyAllReadings(readingSetIndex)"
+                      mat-menu-item
+                    >
+                      <mat-icon>content_copy</mat-icon>
+                      <span>Copy All</span>
+                    </button>
+                  </mat-menu>
+                </div>
+                <p class="card-category">Daily Readings</p>
+              </div>
+              <div class="card-body"></div>
+            </div>
+          </div>
+          <!-- mass id card ends here -->
+
+          <!-- actual readings cards start here -->
+          <div class="m-auto" *ngIf="readingSet.readingTitle">
+            <div class="card">
+              <div class="card-header card-header-warning">
+                <span class="d-flex flex-row justify-content-between">
+                  <h6 class="text-bold">
+                    {{ readingSet.readingTitle }}
+                  </h6>
+
+                  <div class="d-flex flex-row">
+                    <h6 class="text-bold">
+                      {{ readingSet.readingAddress }}
+                    </h6>
+                    <!-- menu for each reading -->
+                    <div class="mat-single-reading-menu-wrapper">
+                      <button
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu"
+                      >
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" xPosition="before">
+                        <button
+                          (click)="shareSingleReading(readingSet)"
+                          mat-menu-item
+                        >
+                          <mat-icon>share</mat-icon>
+                          <span> Share</span>
+                        </button>
+                        <button
+                          (click)="copySingleReading(readingSet)"
+                          mat-menu-item
+                        >
+                          <mat-icon>content_copy</mat-icon>
+                          <span> Copy </span>
+                        </button>
+                        <button
+                          (click)="viewReadingFromTheBible(readingSet)"
+                          mat-menu-item
+                        >
+                          <mat-icon>library_books</mat-icon>
+                          <span> Read from the Bible </span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                    <!-- end of single reading's menu -->
+                  </div>
+                </span>
+              </div>
+              <div class="card-body">
+                <article style="white-space: pre-wrap; text-align: left">
+                  {{ readingSet.readingBody.trim() }}
+                </article>
+                <br *ngIf="readingIndex !== 0" />
+              </div>
+            </div>
+          </div>
+          <!-- actual readings cards end here -->
+        </ng-container>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+  <!-- preloader -->
+  <preloaders [condition]="this.isLoadingDailyReadings"></preloaders>
+  <!-- error area -->
+  <div *ngIf="this.error" class="col-sm-11 m-auto">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title" style="white-space: pre-wrap">:( Error</h4>
+        <p class="card-category">{{ this.error }}</p>
+      </div>
+      <div class="card-body col-sm-12 m-auto">
+        <button
+          class="btn btn-primary"
+          (click)="fetchDailyReadings(this.daysDate)"
+        >
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

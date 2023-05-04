@@ -1,0 +1,104 @@
+<div class="main-content">
+  <div class="prayers-container" *ngIf="this.filteredPrayers">
+    <!-- filter the prayers rendered by prayer category/name -->
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Filter by prayer name/category </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="filterFormGroup">
+          <mat-form-field class="card" appearance="fill">
+            <mat-label>Filter by category</mat-label>
+            <mat-select
+              formControlName="filterPrayerByCategoryControl"
+              name="prayerCategory"
+            >
+              <mat-option
+                *ngFor="let prayerSet of this.prayers"
+                [value]="prayerSet.category"
+              >
+                {{ prayerSet.category }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="card" appearance="fill">
+            <mat-label>Filter by name</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="filterPrayerByNameControl"
+              type="text"
+            />
+          </mat-form-field>
+          <button mat-button (click)="reset()">
+            <mat-icon>restore</mat-icon>
+            Reset
+          </button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <ng-container *ngFor="let category of this.filteredPrayers">
+      <div class="card" *ngIf="category.category">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title">{{ category.category }}</h3>
+        </div>
+        <div class="card-body">
+          <span class="category">
+            {{ category.intro }}
+          </span>
+        </div>
+      </div>
+      <ng-container *ngFor="let prayer of category.prayers">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <div class="d-flex flex-row justify-content-between">
+              <div>
+                <h3 class="card-title">{{ prayer.title }}</h3>
+                <p class="card-title">
+                  {{ prayer.intro }}
+                </p>
+              </div>
+              <div class="mat-single-reading-menu-wrapper">
+                <button mat-icon-button [matMenuTriggerFor]="pMenu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #pMenu="matMenu" xPosition="before">
+                  <button (click)="sharePrayers(prayer)" mat-menu-item>
+                    <mat-icon>share</mat-icon>
+                    <span>Share Prayer</span>
+                  </button>
+                  <button (click)="copyPrayers(prayer)" mat-menu-item>
+                    <mat-icon>content_copy</mat-icon>
+                    <span>Copy Prayer</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-1 pb-1">
+            <span class="category" style="white-space: pre-wrap"
+              >{{ prayer.prayer }}
+            </span>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="isLoadingPrayersData">
+    <preloaders [condition]="this.isLoadingPrayersData"></preloaders>
+  </ng-container>
+  <div *ngIf="this.error" class="col-sm-11 m-auto">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title" style="white-space: pre-wrap">:( Error</h4>
+        <p class="card-category">{{ this.error }}</p>
+      </div>
+      <div class="card-body col-sm-12 m-auto">
+        <button class="btn btn-primary" (click)="fetchCatholicPrayers()">
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

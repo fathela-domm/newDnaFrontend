@@ -1,0 +1,12 @@
+<div class="main-content">
+  <iframe
+    (load)="afterIFrameLoaded()"
+    id="catechismPDFIframe"
+    frameborder="0"
+    allowtransparency="true"
+    allowFullscreen="true"
+    style="width: 100%; height: 100vh; border: none; margin-top: -30px"
+    src="https://online.visual-paradigm.com/share/book/catechism-110kzj7p7o?p=1"
+  ></iframe>
+</div>
+<preloaders [condition]="isLoadingIFrame"></preloaders>

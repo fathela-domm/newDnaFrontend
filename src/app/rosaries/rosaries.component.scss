@@ -1,0 +1,11 @@
+mat-button-toggle-group {
+  margin: auto;
+}
+
+.main-rosaries-content {
+  margin: auto;
+  width: 90%;
+  @media screen and(max-width: 775px) {
+    width: 100%;
+  }
+}

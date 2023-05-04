@@ -1,0 +1,89 @@
+<div class="main-content">
+  <div *ngIf="this.dataToRender.length > 0" class="catholic-news-renderer">
+    <form [formGroup]="filterNewsFormGroup" class="mt-2 mb-1">
+      <mat-form-field class="card" appearance="fill">
+        <mat-label>Filter by Region</mat-label>
+        <mat-select
+          formControlName="filterNewsByCategoryFormControl"
+          name="newsCategories"
+        >
+          <mat-option
+            *ngFor="let newsFeed of this.catholicNewsFeeds"
+            [value]="newsFeed.region"
+          >
+            {{ newsFeed.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <ng-container *ngFor="let newsRecord of this.dataToRender; let i = index">
+      <div *ngIf="this.dataToRender.length > 0" class="card news-card">
+        <div class="card-body">
+          <div class="left">
+            <a
+              [href]="newsRecord.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img class="news-card-image" [src]="newsRecord.imageURL" />
+            </a>
+          </div>
+          <div class="right ml-2 pt-2">
+            <h4 class="card-title" style="font-weight: bold">
+              <a
+                [href]="newsRecord.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-primary"
+              >
+                {{ newsRecord.title }}
+              </a>
+            </h4>
+            <p class="card-category" style="font-weight: 400">
+              {{ newsRecord.description.content.p1 }}
+            </p>
+            <p class="card-category" style="font-weight: 400">
+              {{ newsRecord.description.content.p2 }}
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div
+            class="row col-sm-11 m-auto d-flex flex-row justify-content-between"
+          >
+            <p class="stats" *ngIf="newsRecord.category">
+              <i class="material-icons">description</i>
+              {{ newsRecord.category }}
+            </p>
+            <div class="stats">
+              <p>
+                <i class="material-icons">access_time</i>
+                {{ newsRecord.description.info }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!-- preloader -->
+  <preloaders [condition]="this.isLoadingNews"></preloaders>
+  <!-- error area -->
+  <div *ngIf="this.error" class="col-sm-11 m-auto pt-3 pt-1">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title" style="white-space: pre-wrap">:( Error</h4>
+        <p class="card-category">{{ this.error }}</p>
+      </div>
+      <div class="card-body col-sm-12 m-auto">
+        <button class="btn btn-primary" (click)="fetchCatholicNews()">
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button scrollTop mat-fab id="btn-scroll-top">
+  <mat-icon class="mat-18">arrow_upward</mat-icon>
+</button>

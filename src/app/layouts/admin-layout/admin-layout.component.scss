@@ -1,0 +1,25 @@
+.sidebar-background {
+  background-image: url("/assets/img/sidebar-3.jpg");
+  background-blend-mode: saturation;
+  background-color: rgba(200, 54, 54, 0.353);
+  background-position: center;
+}
+
+.drop-down-icon {
+  zoom: 1.4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 7px;
+  color: red;
+}
+
+span.img-holder img {
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.fixed-plugin {
+  margin-right: -13px;
+  margin-top: 35px;
+}

@@ -1,0 +1,26 @@
+.mat-icon-button:first-child {
+  margin-left: -25px;
+}
+
+.mat-icon-button {
+  position: fixed;
+  z-index: 100;
+  top: 350px;
+  background: ivory;
+}
+
+.mat-icon-button:last-child {
+  right: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

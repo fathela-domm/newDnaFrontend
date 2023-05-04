@@ -1,0 +1,21 @@
+<section>
+  <div class="firebase-ui-container" style="width: 100%">
+    <div class="col-md-6 col-lg-4 m-auto">
+      <firebase-ui
+        (signInSuccessWithAuthResult)="successCallback($event)"
+        (signInFailure)="errorCallback($event)"
+        (uiShown)="uiShownCallback()"
+      ></firebase-ui>
+    </div>
+  </div>
+</section>
+<ng-container *ngIf="this.isLoadingFirebaseUI">
+  <div class="preloaders">
+    <div class="centered">
+      <mat-progress-spinner
+        mode="indeterminate"
+        color="primary"
+      ></mat-progress-spinner>
+    </div>
+  </div>
+</ng-container>

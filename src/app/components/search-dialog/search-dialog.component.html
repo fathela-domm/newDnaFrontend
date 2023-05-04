@@ -1,0 +1,97 @@
+<form
+  [formGroup]="searchFormGroup"
+  class="d-flex flex-row"
+  (submit)="handleFormSubmission($event)"
+>
+  <span matDialogClose class="search-icon">
+    <mat-icon class="mat-18"> arrow_back </mat-icon>
+  </span>
+  <mat-form-field style="width: 100%">
+    <input
+      matInput
+      type="search"
+      autocomplete="off"
+      formControlName="searchInputFormControl"
+      placeholder="Search by saint's name, patronage, novena..."
+    />
+    <button
+      *ngIf="this.searchFormGroup.value.searchInputFormControl"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="this.clearSearchInput()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+<!-- error area -->
+<ng-container *ngIf="this.searchError">
+  <mat-dialog-content
+    style="font-size: 14px"
+    class="text-danger text-center flex-1"
+  >
+    {{ this.searchError }}
+  </mat-dialog-content>
+</ng-container>
+
+<!-- no results -->
+<ng-container *ngIf="this.notFound">
+  <mat-dialog-content class="text-warning text-center flex-1">
+    Your search <strong>{{ searchInputValue }}</strong> didn't match any
+    documents
+  </mat-dialog-content>
+</ng-container>
+
+<!-- results will display here -->
+<mat-list *ngIf="this.searchResults.length > 0">
+  <ng-container *ngFor="let result of this.searchResults">
+    <mat-card class="col-sm-12">
+      <ng-container *ngIf="result?.thumbnail[0]?.src; else elseTemplate">
+        <mat-card-header class="col-sm-2" style="margin-left: -50px">
+          <a target="_blank" href="{{ result.link }}">
+            <img matCardAvatar src="{{ result?.thumbnail[0].src }}" />
+          </a>
+        </mat-card-header>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-card-header class="col-sm-2" style="margin-left: -50px">
+          <a target="_blank" href="{{ result.link }}">
+            <img matCardAvatar src="/assets/img/avatar.jpg" />
+          </a>
+        </mat-card-header>
+      </ng-template>
+
+      <mat-card-content class="col-sm-10">
+        <a target="_blank" href="{{ result.link }}">
+          <mat-card-title style="font-size: 15px" class="mat-h5">{{
+            result.title
+          }}</mat-card-title>
+        </a>
+        <mat-card-subtitle class="mat-body">{{
+          result.snippet
+        }}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</mat-list>
+
+<!--material skeleton placeholder -->
+<ng-container *ngIf="isLoadingSearchResults">
+  <mat-list>
+    <ng-container *ngFor="let count of skeletonTextLength">
+      <div class="skeleton">
+        <div class="skeleton-left flex1">
+          <div class="square circle"></div>
+        </div>
+        <div class="skeleton-right flex2">
+          <div class="line h17 w40 m10"></div>
+          <div class="line"></div>
+          <div class="line h15 w50"></div>
+          <div class="line w75"></div>
+        </div>
+      </div>
+    </ng-container>
+  </mat-list>
+</ng-container>
