@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  backendUri: "https://dna-backend-service.onrender.com/",
+  backendUri: "https://tender-blue-jumpsuit.cyclic.app/",
   firebaseConfig: {
     apiKey: "AIzaSyCI0MIUi31DxlDw9Uye6ngoilk1N8j147E",
     authDomain: "codify-io.firebaseapp.com",
